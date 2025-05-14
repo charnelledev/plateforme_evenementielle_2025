@@ -1,24 +1,17 @@
 <?php
-// Fichier : models/inscription.php
-
-// Inclure la connexion à la base de données
-require_once 'includes/db.php';
-
-// Fonction pour récupérer toutes les inscriptions
-
-
 // models/inscription.php
 
-require_once 'includes/db.php';
+require_once 'includes/database.php';
 
+// Fonction pour récupérer toutes les inscriptions
 function getInscriptions() {
     global $pdo;
 
     $sql = "
-        SELECT inscriptions.id, utilisateurs.nom AS user_nom, events.titre AS event_titre,
+        SELECT inscriptions.id, users.nom AS user_nom, events.titre AS event_titre,
                inscriptions.statut, inscriptions.date_inscription
         FROM inscriptions
-        JOIN utilisateurs ON inscriptions.id_utilisateur = utilisateurs.id
+        JOIN users ON inscriptions.id_utilisateur = users.id
         JOIN events ON inscriptions.id_event = events.id
         ORDER BY inscriptions.date_inscription DESC
     ";
@@ -28,81 +21,61 @@ function getInscriptions() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// function getInscriptions() {
-//     global $conn;
-//     $query = "SELECT i.id, i.id_utilisateur, i.id_event, i.statut, i.date_inscription, e.titre AS event_titre, u.nom AS user_nom
-//               FROM inscriptions i
-//               JOIN events e ON i.id_event = e.id
-//               JOIN users u ON i.id_utilisateur = u.id";
-//     $result = mysqli_query($conn, $query);
+// Fonction pour récupérer les inscriptions d'un utilisateur par son ID
+function getInscriptionsByUser($user_id) {
+    global $pdo;
 
-//     if (!$result) {
-//         die('Erreur dans la requête: ' . mysqli_error($conn));
-//     }
+    // Préparer la requête pour récupérer les inscriptions de l'utilisateur
+    $sql = "SELECT * FROM inscriptions WHERE id_utilisateur = ? ORDER BY date_inscription DESC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(1, $user_id, PDO::PARAM_INT);
+    $stmt->execute();
 
-//     $inscriptions = [];
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         $inscriptions[] = $row;
-//     }
-
-//     return $inscriptions;
-// }
-
-// Fonction pour récupérer une inscription par son ID
-function getInscriptionById($id) {
-    global $conn;
-    $query = "SELECT * FROM inscriptions WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $id);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if ($row = mysqli_fetch_assoc($result)) {
-        return $row;
-    }
-
-    return null;
+    // Retourner les inscriptions de l'utilisateur
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Fonction pour inscrire un utilisateur à un événement
 function addInscription($id_utilisateur, $id_event) {
-    global $conn;
-    $query = "INSERT INTO inscriptions (id_utilisateur, id_event, statut) VALUES (?, ?, 'en_attente')";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ii', $id_utilisateur, $id_event);
+    global $pdo;
+    $query = "INSERT INTO inscriptions (id_utilisateur, id_event, statut) VALUES (:id_utilisateur, :id_event, 'en_attente')";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $stmt->bindParam(':id_event', $id_event, PDO::PARAM_INT);
 
-    return mysqli_stmt_execute($stmt);
+    return $stmt->execute();
 }
 
 // Fonction pour mettre à jour l'état de l'inscription (confirmer ou annuler)
 function updateInscription($id, $statut) {
-    global $conn;
-    $query = "UPDATE inscriptions SET statut = ? WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'si', $statut, $id);
+    global $pdo;
+    $query = "UPDATE inscriptions SET statut = :statut WHERE id = :id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':statut', $statut);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    return mysqli_stmt_execute($stmt);
+    return $stmt->execute();
 }
 
 // Fonction pour supprimer une inscription
 function deleteInscription($id) {
-    global $conn;
-    $query = "DELETE FROM inscriptions WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'i', $id);
+    global $pdo;
+    $query = "DELETE FROM inscriptions WHERE id = :id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    return mysqli_stmt_execute($stmt);
+    return $stmt->execute();
 }
 
 // Fonction pour vérifier si un utilisateur est déjà inscrit à un événement
 function isUserInscribed($id_utilisateur, $id_event) {
-    global $conn;
-    $query = "SELECT * FROM inscriptions WHERE id_utilisateur = ? AND id_event = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'ii', $id_utilisateur, $id_event);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    global $pdo;
+    $query = "SELECT * FROM inscriptions WHERE id_utilisateur = :id_utilisateur AND id_event = :id_event";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+    $stmt->bindParam(':id_event', $id_event, PDO::PARAM_INT);
+    $stmt->execute();
 
-    return mysqli_num_rows($result) > 0;
+    return $stmt->rowCount() > 0;
 }
 ?>

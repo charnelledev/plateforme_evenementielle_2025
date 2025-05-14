@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once './includes/db.php';
+require_once './includes/database.php';
 require_once './includes/check_login.php';
 require_once './models/event.php';
 

@@ -1,13 +1,23 @@
 <?php
-session_start();
 require_once './includes/database.php';
-require_once './includes/check_login.php';
+require_once './includes/check_login.php';  // Assurez-vous que session_start() est appelé ici
 require_once './models/user.php';
 require_once './models/event.php';
 require_once './models/inscription.php';
 
+// Vérifier si la session contient un user_id
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger ou afficher un message d'erreur si l'utilisateur n'est pas connecté
+    header('Location: login.php');
+    exit();
+}
+
+// Récupérer l'utilisateur par son ID
 $user = getUserById($_SESSION['user_id']);
 $role = $user['role'];
+
+// Vérification si le prénom existe dans le tableau
+$prenom = isset($user['prenom']) ? htmlspecialchars($user['prenom']) : 'Utilisateur';
 
 // Récupère les événements créés par l'utilisateur
 $mesEvents = getEventsByCreateur($user['id']);
@@ -19,7 +29,7 @@ $mesInscriptions = getInscriptionsByUser($user['id']);
 <?php include './includes/header.php'; ?>
 
 <div class="max-w-7xl mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Bienvenue, <?= htmlspecialchars($user['prenom']) ?> 👋</h1>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Bienvenue, <?= $prenom ?> 👋</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
@@ -33,9 +43,13 @@ $mesInscriptions = getInscriptionsByUser($user['id']);
         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
             <h2 class="text-xl font-semibold text-indigo-600">Mes événements créés</h2>
             <ul class="list-disc ml-5 mt-3 text-gray-700">
-                <?php foreach ($mesEvents as $event): ?>
-                    <li><?= htmlspecialchars($event['titre']) ?> (<?= $event['date_event'] ?>)</li>
-                <?php endforeach; ?>
+                <?php if (empty($mesEvents)): ?>
+                    <li>Aucun événement créé pour le moment.</li>
+                <?php else: ?>
+                    <?php foreach ($mesEvents as $event): ?>
+                        <li><?= htmlspecialchars($event['titre']) ?> (<?= $event['date_event'] ?>)</li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
             <a href="create_event.php" class="mt-4 inline-block text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl">Créer un événement</a>
         </div>
@@ -43,9 +57,13 @@ $mesInscriptions = getInscriptionsByUser($user['id']);
         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
             <h2 class="text-xl font-semibold text-indigo-600">Mes inscriptions</h2>
             <ul class="list-disc ml-5 mt-3 text-gray-700">
-                <?php foreach ($mesInscriptions as $insc): ?>
-                    <li><?= htmlspecialchars($insc['titre']) ?> - <?= $insc['statut'] ?></li>
-                <?php endforeach; ?>
+                <?php if (empty($mesInscriptions)): ?>
+                    <li>Aucune inscription pour le moment.</li>
+                <?php else: ?>
+                    <?php foreach ($mesInscriptions as $insc): ?>
+                        <li><?= htmlspecialchars($insc['titre']) ?> - <?= $insc['statut'] ?></li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
@@ -61,3 +79,4 @@ $mesInscriptions = getInscriptionsByUser($user['id']);
 </div>
 
 <?php include './includes/footer.php'; ?>
+

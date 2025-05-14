@@ -4,7 +4,7 @@
 session_start();
 
 // Inclure la connexion à la base de données et les fonctions nécessaires
-require_once 'includes/db.php';
+require_once 'includes/database.php';
 require_once 'models/user.php';
 require_once 'models/inscription.php';
 require_once 'models/event.php';
