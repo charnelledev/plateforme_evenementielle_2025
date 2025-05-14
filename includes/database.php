@@ -18,4 +18,3 @@ try {
      echo "<div style='color:red;'>La connexion à la base de données a échoué :</div> " . $e->getMessage();
  }
  ?>
-

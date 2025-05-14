@@ -1,0 +1,90 @@
+<?php
+require_once 'includes/database.php';
+require_once 'includes/header.php';
+
+// Récupérer les événements actifs
+$events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date_event ASC")->fetchAll();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./src/output.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-700">Événements à venir</h1> -->
+        
+
+<section class="bg-gradient-to-r from-indigo-50 to-blue-100 py-16">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-indigo-700">Bienvenue sur Événement_2025</h1>
+    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Une plateforme moderne pour découvrir, créer et participer à une variété d’événements passionnants partout et en ligne.</p>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- Conférences professionnelles -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/conference.jpg" alt="Conférences" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Conférences professionnelles</h2>
+        <p class="mt-2 text-gray-600">Participez à des conférences métiers, panels d'experts et discussions sur les dernières innovations.</p>
+      </div>
+    </div>
+
+    <!-- Concerts ou festivals -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/concert.jpg" alt="Concerts" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Concerts & Festivals</h2>
+        <p class="mt-2 text-gray-600">Vibrez au rythme des plus grands artistes locaux et internationaux lors de festivals inoubliables.</p>
+      </div>
+    </div>
+
+    <!-- Webinaires et séminaires -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/webinaire.jpg" alt="Webinaires" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Webinaires & Séminaires</h2>
+        <p class="mt-2 text-gray-600">Rejoignez nos séminaires en ligne depuis chez vous pour apprendre, échanger et progresser.</p>
+      </div>
+    </div>
+
+    <!-- Salons / Foires -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/salon.jpg" alt="Salon" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Salons & Foires</h2>
+        <p class="mt-2 text-gray-600">Explorez nos salons culturels, technologiques et foires commerciales dans plusieurs régions.</p>
+      </div>
+    </div>
+
+    <!-- Événements associatifs ou scolaires -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/associatif.jpg" alt="Événement associatif" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Événements associatifs & scolaires</h2>
+        <p class="mt-2 text-gray-600">Engagez-vous dans des événements communautaires, journées culturelles, activités scolaires.</p>
+      </div>
+    </div>
+
+    <!-- Formations ou ateliers -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
+      <img src="assets/img/formation.jpg" alt="Formation" class="w-full h-52 object-cover">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold text-indigo-700">Formations & Ateliers</h2>
+        <p class="mt-2 text-gray-600">Améliorez vos compétences grâce à nos sessions pratiques, ateliers techniques et formations intensives.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<?php require_once 'includes/footer.php'; ?>
+
+        </body>
+        </html>
