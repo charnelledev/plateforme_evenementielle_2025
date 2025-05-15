@@ -55,20 +55,23 @@
                     <li><a href="#" class="hover:underline">Conditions d'utilisation</a></li>
                 </ul>
             </div>
-
             <div>
                 <h3 class="text-lg font-medium mb-3">Nous suivre</h3>
-                <div class="flex space-x-4 mt-2">
-                    <a href="#" class="hover:scale-110 transition transform duration-200">
-                        <img src="assets/facebook.svg" alt="Facebook" class="w-6 h-6">
-                    </a>
-                    <a href="#" class="hover:scale-110 transition transform duration-200">
-                        <img src="assets/instagram.svg" alt="Instagram" class="w-6 h-6">
-                    </a>
-                    <a href="#" class="hover:scale-110 transition transform duration-200">
-                        <img src="assets/twitter.svg" alt="Twitter" class="w-6 h-6">
-                    </a>
-                </div>
+<div class="flex space-x-4 mt-2">
+      <a href="#" class="hover:text-blue-400" aria-label="Facebook">
+        <i data-lucide="facebook" class="w-6 h-6"></i>
+      </a>
+      <a href="#" class="hover:text-blue-400" aria-label="Instagram">
+        <i data-lucide="instagram" class="w-6 h-6"></i>
+      </a>
+      <a href="#" class="hover:text-blue-400" aria-label="Twitter">
+        <i data-lucide="twitter" class="w-6 h-6"></i>
+      </a>
+      <a href="" class="hover:text-blue-400" aria-label="Email">
+        <i data-lucide="mail" class="w-6 h-6"></i>
+      </a>
+    </div>
+
             </div>
         </div>
 
@@ -77,5 +80,9 @@
         </div>
     </footer>
 
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
 </body>
 </html> 

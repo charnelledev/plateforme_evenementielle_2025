@@ -22,7 +22,8 @@ $isAdmin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
             <a href="/evenement_2025/index.php" class="text-2xl font-bold text-blue-700">Événements 2025</a>
             <nav class="space-x-4">
                 <a href="index.php" class="text-gray-700 hover:text-blue-600 font-medium">Accueil</a>
-                
+                <a href="support.php" class="text-gray-700  hover:text-blue-600 font-medium transition">Support</a>
+
                 <?php if ($isLoggedIn): ?>
                     <a href="dashboard.php" class="text-gray-700 hover:text-blue-600 font-medium">Tableau de bord</a>
                     <?php if ($isAdmin): ?>
