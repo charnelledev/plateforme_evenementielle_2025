@@ -73,7 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':password', $password);
             $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
         }
-
+// if ($stmt->execute()) {
+//     $_SESSION['nom'] = $nom; // Mettre à jour la session automatiquement
+//     header("Location: dashboard.php?update=success");
+//     exit;
+// } else {
+//     $error = "Erreur lors de la mise à jour du profil !";
+// }
         if ($stmt->execute()) {
             // Message de succès
             $success = "Profil mis à jour avec succès!";
@@ -97,19 +103,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="max-w-3xl mx-auto my-12 p-8 bg-white shadow-lg rounded-lg">
         <h2 class="text-2xl font-semibold text-center">Modifier mon Profil</h2>
 
-        <?php if (isset($success)) { ?>
-            <div class="bg-green-500 text-white p-3 rounded mt-4">
-                <?= $success; ?>
-            </div>
-        <?php } ?>
+<?php if (isset($success)): ?>
+    <div id="successMessage" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+        <?= htmlspecialchars($success) ?>
+    </div>
+<?php endif; ?>
 
-        <?php if (isset($error)) { ?>
-            <div class="bg-red-500 text-white p-3 rounded mt-4">
-                <?= $error; ?>
-            </div>
-        <?php } ?>
+<?php if (isset($error)): ?>
+    <div id="errorMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+        <?= htmlspecialchars($error) ?>
+    </div>
+<?php endif; ?>
 
-        <form action="edit_profil.php" method="POST" enctype="multipart/form-data">
+        <form action="edit_profile.php" method="POST" enctype="multipart/form-data">
             <div class="mb-4">
                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
                 <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user['nom']); ?>" class="mt-1 block w-full p-2 border border-gray-300 rounded" required>
@@ -140,7 +146,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php
                  ?>
             </div>
+            <a href="dashboard.php" class="mt-4 inline-block bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+    Retour au tableau de bord
+</a>
         </form>
     </div>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
