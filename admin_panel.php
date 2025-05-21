@@ -15,14 +15,19 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-// Fonction pour récupérer les utilisateurs
+// Définir l'ID utilisateur depuis la session
+$user_id = $_SESSION['user_id']; // ✅ ceci règle ton problème
+
+// Récupérer les utilisateurs
 $users = getUsers();
 
-// Fonction pour récupérer les inscriptions
-$inscriptions = getInscriptions();
+// Récupérer les inscriptions
+// $inscriptions getInscriptions() 
+$inscriptions = getInscriptionsByUser($user_id);
 
-// Fonction pour récupérer les événements
+// Récupérer les événements
 $events = getEvents();
+
 
 ?>
 

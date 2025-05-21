@@ -5,12 +5,15 @@ require_once 'includes/database.php'; // Connexion DB si pas déjà incluse aill
 
 function getEvents() {
     global $pdo;
-
-    $sql = "SELECT * FROM events ORDER BY date_event DESC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT events.*, users.nom AS nom_createur
+            FROM events
+            LEFT JOIN users ON events.id_createur = users.id
+            ORDER BY date_event ASC";
+    $resultat = $pdo->query($sql);
+    return $resultat->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 
 // Fonction pour récupérer les événements d'un créateur par son ID
 function getEventsByCreateur($createur_id) {

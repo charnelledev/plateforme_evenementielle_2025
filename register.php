@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Insérer les données dans la base de données
-        $stmt = $pdo->prepare("INSERT INTO users (nom, email, mot_de_passe, role, image_profil) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO users (nom, email, password, role, image_profil) VALUES (?, ?, ?, ?, ?)");
         if ($stmt->execute([$nom, $email, $password, $role, $imageName])) {
             // Rediriger vers la page de connexion après inscription
             header("Location: login.php");

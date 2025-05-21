@@ -42,20 +42,27 @@ $mesInscriptions = getInscriptionsByUser($user_id);
             <a href="edit_profile.php" class="text-indigo-500 hover:underline text-sm mt-2 inline-block">Modifier mon profil</a>
         </div>
 
-        <!-- Mes événements créés -->
-        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
-            <h2 class="text-xl font-semibold text-indigo-600">Mes événements créés</h2>
-            <ul class="list-disc ml-5 mt-3 text-gray-700">
-                <?php if (empty($mesEvents)): ?>
-                    <li>Aucun événement créé pour le moment.</li>
-                <?php else: ?>
-                    <?php foreach ($mesEvents as $event): ?>
-                        <li><?= htmlspecialchars($event['titre']) ?> (<?= htmlspecialchars($event['date_event']) ?>)</li>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </ul>
-            <a href="create_event.php" class="mt-4 inline-block text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl">Créer un événement</a>
-        </div>
+         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+    <h2 class="text-xl font-semibold text-indigo-600">Mes événements créés</h2>
+    <ul class="list-disc ml-5 mt-3 text-gray-700">
+        <?php if (empty($mesEvents)): ?>
+            <li>Aucun événement créé pour le moment.</li>
+        <?php else: ?>
+            <?php foreach ($mesEvents as $event): ?>
+                <li><?= htmlspecialchars($event['titre']) ?> (<?= htmlspecialchars($event['date_event']) ?>)</li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+
+    <div class="mt-4 flex gap-3">
+        <a href="create_event.php" class="inline-block text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl">
+            Créer un événement
+        </a>
+        <a href="events.php" class="inline-block text-white bg-indigo-600 hover:bg-indigo-700 px-1 py-2 rounded-xl">
+            Voir mes événements
+        </a>
+    </div>
+</div>
 
         <!-- Mes inscriptions -->
         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
@@ -69,7 +76,7 @@ $mesInscriptions = getInscriptionsByUser($user_id);
                     <?php endforeach; ?>
                 <?php endif; ?>
             </ul>
-        </div>
+        </div> 
     </div>
 
     <!-- Espace admin -->
