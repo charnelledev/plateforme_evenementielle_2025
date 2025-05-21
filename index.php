@@ -29,7 +29,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
     
     <!-- Conférences professionnelles -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/conference.jpg" alt="Conférences" class="w-full h-52 object-cover">
+      <img src="assets/images/Corporate Events Services.jpg" alt="Conférences" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Conférences professionnelles</h2>
         <p class="mt-2 text-gray-600">Participez à des conférences métiers, panels d'experts et discussions sur les dernières innovations.</p>
@@ -38,7 +38,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
 
     <!-- Concerts ou festivals -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/concert.jpg" alt="Concerts" class="w-full h-52 object-cover">
+      <img src="assets/images/téléchargement (68).jpg" alt="Concerts" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Concerts & Festivals</h2>
         <p class="mt-2 text-gray-600">Vibrez au rythme des plus grands artistes locaux et internationaux lors de festivals inoubliables.</p>
@@ -47,7 +47,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
 
     <!-- Webinaires et séminaires -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/webinaire.jpg" alt="Webinaires" class="w-full h-52 object-cover">
+      <img src="assets/images/Dans notre dernier article, nous abordons comment….jpg" alt="Webinaires" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Webinaires & Séminaires</h2>
         <p class="mt-2 text-gray-600">Rejoignez nos séminaires en ligne depuis chez vous pour apprendre, échanger et progresser.</p>
@@ -56,7 +56,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
 
     <!-- Salons / Foires -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/salon.jpg" alt="Salon" class="w-full h-52 object-cover">
+      <img src="assets/images/f6a7b843-341a-4679-833a-5c8174131f38.jpg" alt="Salon" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Salons & Foires</h2>
         <p class="mt-2 text-gray-600">Explorez nos salons culturels, technologiques et foires commerciales dans plusieurs régions.</p>
@@ -65,7 +65,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
 
     <!-- Événements associatifs ou scolaires -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/associatif.jpg" alt="Événement associatif" class="w-full h-52 object-cover">
+      <img src="assets/images/A student of Glenmuir High School speaks at a….jpg" alt="Événement associatif" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Événements associatifs & scolaires</h2>
         <p class="mt-2 text-gray-600">Engagez-vous dans des événements communautaires, journées culturelles, activités scolaires.</p>
@@ -74,7 +74,7 @@ $events = $pdo->query("SELECT * FROM events WHERE statut = 'actif' ORDER BY date
 
     <!-- Formations ou ateliers -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition">
-      <img src="assets/img/formation.jpg" alt="Formation" class="w-full h-52 object-cover">
+      <img src="assets/images/Team building artistique _ création d'une fresque….jpg" alt="Formation" class="w-full h-52 object-cover">
       <div class="p-6">
         <h2 class="text-2xl font-semibold text-indigo-700">Formations & Ateliers</h2>
         <p class="mt-2 text-gray-600">Améliorez vos compétences grâce à nos sessions pratiques, ateliers techniques et formations intensives.</p>
