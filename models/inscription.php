@@ -58,6 +58,17 @@ function getInscriptions() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+function getAllInscriptions() {
+    global $pdo;
+    $sql = "SELECT i.*, u.nom AS user_nom, e.titre AS event_titre
+            FROM inscriptions i
+            JOIN users u ON i.id_utilisateur = u.id
+            JOIN events e ON i.id_event = e.id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
 function getInscriptionsByUser($user_id) {

@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
+
 // Définir l'ID utilisateur depuis la session
 $user_id = $_SESSION['user_id']; // ✅ ceci règle ton problème
 
@@ -24,6 +25,8 @@ $users = getUsers();
 // Récupérer les inscriptions
 // $inscriptions getInscriptions() 
 $inscriptions = getInscriptionsByUser($user_id);
+$inscriptions = getAllInscriptions();
+
 
 // Récupérer les événements
 $events = getEvents();
@@ -109,36 +112,6 @@ $events = getEvents();
                 </tbody>
             </table>
         </section>
-
-        <!-- Gestion des inscriptions -->
-        <section>
-            <h2 class="text-2xl font-semibold mb-2">Gestion des Inscriptions</h2>
-            <table class="min-w-full bg-white border border-gray-200">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="px-4 py-2 text-left">Utilisateur</th>
-                        <th class="px-4 py-2 text-left">Événement</th>
-                        <th class="px-4 py-2 text-left">Statut</th>
-                        <th class="px-4 py-2 text-left">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($inscriptions as $inscription): ?>
-                        <tr>
-                            <td class="px-4 py-2"><?= htmlspecialchars($inscription['id_utilisateur']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($inscription['id_event']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($inscription['statut']) ?></td>
-                            <td class="px-4 py-2">
-                                <a href="update_inscription.php?id=<?= $inscription['id'] ?>" class="text-blue-500">Modifier</a>
-                                | 
-                                <a href="delete_inscription.php?id=<?= $inscription['id'] ?>" class="text-red-500">Supprimer</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </section>
-
     </div>
 
     <?php include 'includes/footer.php'; ?>
